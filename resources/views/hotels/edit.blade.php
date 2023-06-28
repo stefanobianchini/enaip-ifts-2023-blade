@@ -20,7 +20,21 @@
         </div>
         <div class="mb-3">
             <label for="stars" class="form-label">Stelle</label>
-            <input type="text" class="form-control" id="stars" placeholder="Inserisci le stelle" value="{{ old('stars', $hotel->stars) }}" name="stars">
+            <select class="form-select @error('stars') is-invalid @enderror" name="stars" id="stars" placeholder="Seleziona dall'elenco">
+                <option value="">Selezionare un'opzione</option>
+
+                @for($i=1; $i<=5; $i++)
+                    <option value="{{$i}}" @selected($i==old('stars', $hotel->stars))>
+                        {{$i}}
+                        @if($i==1)
+                        stella
+                        @else
+                        stelle
+                        @endif
+                    </option>
+                @endfor
+
+            </select>
         </div>
         <div class="mb-3">
             <label for="address" class="form-label">Indirizzo</label>
